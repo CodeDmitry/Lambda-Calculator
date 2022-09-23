@@ -1,5 +1,7 @@
 "use strict"
 
+// | Note, this file requires glm_1.js to be loaded before it.
+
 var vec2 = function vec3() {
     var value = new Float32Array(2);
     this.value = value;

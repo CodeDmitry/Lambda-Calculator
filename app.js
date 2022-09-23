@@ -1,5 +1,5 @@
 (function() {
-    // integrading underscore
+    // | Copy all underscorejs services into the global scope.
     for (var key in _) {
         if (!(key in window)) {
             window[key] = _[key];
@@ -8,7 +8,7 @@
     
     window.global = window;
     
-    // make random core
+    // | Make math services accessible as global scope services.
     window.random = Math.random.bind(window);
     window.e = Math.E;
     window.pi = Math.PI;
@@ -83,9 +83,11 @@
     
     app.controller('playgroundCtrl', ['$scope', function($scope) {
         $scope.model = model;
+        // | The `run` service evaluates the playground text and prepends it to the transcript text.
         $scope.run = function() {
             model.transcriptText = eval(model.playgroundText) + "\n" + model.transcriptText
         };
+        // | The `clear` service erases the transcript text.
         $scope.clear = function() {
             model.transcriptText = '';
         };

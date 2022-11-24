@@ -14,6 +14,11 @@
     window.pi = Math.PI;
     window.sqrt = Math.sqrt.bind(window);
     window.ln = Math.log.bind(window);
+    window.log = Math.log10.bind(window);
+    window.trunc = Math.trunc.bind(window);
+    window.ceil = Math.trunc.bind(window);
+    window.floor = Math.trunc.bind(window);
+    
     window.sum = function() {
         return Array.from(arguments[0]).reduce((x1, x2) => x1 + x2);
     };
@@ -51,7 +56,13 @@
         });
         return what;
     }
-
+    
+    window.min = function(xs) {
+        return xs.sort()[0];    
+    };
+    window.max = function(xs) {
+        return xs.sort()[xs.length - 1];
+    }
     
     Array.prototype.mean = function() {
         return mean(this);
@@ -62,8 +73,17 @@
     Array.prototype.mode = function() {
         return mode(this);
     };
+    Array.prototype.product = function() {
+        return product(this);
+    };       
     Array.prototype.sum = function() {
         return sum(this);
+    };
+    Array.prototype.min = function() {
+        return min(this);
+    };
+    Array.prototype.max = function() {
+        return this.sort().reverse()[0];
     }        
     
     window.factorial = function(n) {
@@ -102,7 +122,7 @@
     
     var app = angular.module('app', []);
     app.run(function($rootScope) {
-        $rootScope.activeView = 'console-responses.html'
+        $rootScope.activeView = 'script-editor.html'
         $rootScope.model = model;
     });    
     

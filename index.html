@@ -22,34 +22,90 @@
   <body data-ng-app="app">
     <nav class="navbar navbar-inverse navbar-static-top" style="position: absolute; top: 0px; left: 0px; width: 100vw;  overflow-x: hidden">
       <ul class="nav navbar-nav">
-        <li><a href="javascript:void(0)" data-ng-click="activeView='transcript.html'">Transcript</a></li>
-        <li><a href="javascript:void(0)" data-ng-click="activeView='playground.html'">Playground</a></li>
-        <li><a href="javascript:void(0)" data-ng-click="activeView='transcript.html'">Etc</a></li>
+        <li><a href="javascript:void(0)" data-ng-click="activeView='console-responses.html'">Console Responses</a></li>
+        <li><a href="javascript:void(0)" data-ng-click="activeView='script-editor.html'">Script Editor</a></li>
+        <li><a href="javascript:void(0)" data-ng-click="activeView='help.html'">Help</a></li>
       </ul>
     </nav>
     
     <div data-ng-include="activeView" style="position: absolute; box-sizing: border-box; padding-top: 50px; width: 100%; height: 100%;"></div>
   
     <div id="template-cache">
-      <script type="text/ng-template" id="transcript.html">        
+      <script type="text/ng-template" id="console-responses.html">        
         <div style="width: 100%; height: 100%; box-sizing: border-box; padding-bottom: 20px;">
-          <textarea data-ng-model="model.transcriptText" style="width: 100%; height: 100%; font-family: Courier New; font-size: 10pt; font-weight: bold;"></textarea>
+          <textarea 
+             data-ng-model="model.consoleResponseText" 
+             style="width: 100%; height: 100%; font-family: Courier New; font-size: 10pt; font-weight: bold;">
+          </textarea>
         </div>
       </script>
 
-      <script type="text/ng-template" id="playground.html">
-        <div data-ng-controller="playgroundCtrl" style="width: 100%; height: 100%; overflow-x: hidden;">
+      <script type="text/ng-template" id="script-editor.html">
+        <div data-ng-controller="scriptEditorCtrl" style="width: 100%; height: 100%; overflow-x: hidden;">
           <nav class="navbar navbar-inverse navbar-static-top" style="font-size: 8pt !important; padding: 0px !important;">
             <ul class="nav navbar-nav">
               <li><a href="javascript:void(0)" data-ng-click="run()">Run</a></li>
-              <li><a href="javascript:void(0)" data-ng-click="clear()">Clear Transcript</a></li>
-              <li><a href="javascript:void(0)" data-ng-click="clearPlayground()">Clear Playground</a></li>
+              <li><a href="javascript:void(0)" data-ng-click="clearConsoleResponseText()">Clear Responses</a></li>
+              <li><a href="javascript:void(0)" data-ng-click="clearScriptEditorText()">Clear the Script Editor</a></li>
             </ul>
           </nav>
 
-          <textarea data-ng-model="model.playgroundText" style="position: absolute; bottom:0px; left: 0px; width: 100%; height: 100%; box-sizing: border-box; padding: 2px; padding-top: 102px; font-family: Courier New; font-size: 10pt; font-weight: bold;"></textarea>
+          <textarea data-ng-model="model.scriptEditorText" style="position: absolute; bottom:0px; left: 0px; width: 100%; height: 100%; box-sizing: border-box; padding: 2px; padding-top: 102px; font-family: Courier New; font-size: 10pt; font-weight: bold;"></textarea>
         </div>
       </script>
+
+      <script type="text/ng-template" id="help.html">
+        <div data-ng-controller="scriptEditorCtrl" style="width: 100%; height: 100%; overflow-x: hidden;">
+<pre>
+The Lambda Calculator in essence is just a glorified developer console.
+
+While seemingly simple, it is profoundly useful on mobile devices
+which do not allow you access to the developer console and 
+recently disabled the use of javascript: in URL bar, which is 
+a great shame since it was useful for doing fun things like
+running `javascript:(()=>{document.body.style.filter = 'invert(100%)'})();`
+to invert colors on a website or flipping videos on the website, or
+change video playback speed on a website.
+
+The Lambda Calculator was created when I was taking statistics at 
+university, and found that I needed a tool to generate a large
+set of random numbers, and potentially sort them, find their averages
+and so on.
+
+The lambda calculator exposes javascript Math functions to be used without
+their Math. prefix, that is, you can use log instead of Math.log and 
+random instead of Math.random, pi instead of Math.PI, and e instead of
+Math.E.
+
+Here is a practical example of what the lambda calculator can do:
+
+1. range(100) generates a sequence of numbers 0..100
+2. range(100).map(x => x + 1) generates a sequence of numbers 1..101
+3. range(100).map(random) generates 100 random numbers between 0 and 1
+4. range(100).map(x => Math.trunc(random() * 100)) generates 100 random numbers 0 through 99
+5. 
+let x = range(100).map(x => Math.trunc(random() * 100));
+display("sequence: " + x);
+display("sum: " + x.sum());
+display("mean: " + x.mean());
+display("mean: " + x.median());
+display("mean: " + x.mode());
+
+In addition, lambda calculator offers a few lambda calculus services, which
+is what the calculator is named after - a calculator that supports lambda
+calculus
+
+here is an example:
+
+let f = x => 2;         // f(x) = 2
+let g = x => 3 * x;     // g(x) = 3*x 
+let h = compose(g, f);  // h = g . f = 3*f(x) = 3*2 = 6
+display(h(2));          // 6
+
+</pre>          
+        </div>
+      </script>
+      
     </div>
   </body>
 </html>

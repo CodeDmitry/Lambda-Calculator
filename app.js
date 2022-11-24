@@ -23,6 +23,16 @@
     window.mean = function() {
         return window.sum(arguments[0]) / arguments[0].length;
     };    
+    window.median = function(xs) {
+        var sorted = xs.sort();
+        var mid = Math.floor(sorted.length / 2);
+        if (sorted.length % 2 == 1) {
+            return sorted[mid];
+        } else {
+            return (sorted[mid - 1] + sorted[mid]) / 2;
+        }
+    };
+
     window.mode = function() {
         dict = {};
         var most = Number.NEGATIVE_INFINITY;
@@ -41,6 +51,21 @@
         });
         return what;
     }
+
+    
+    Array.prototype.mean = function() {
+        return mean(this);
+    };
+    Array.prototype.median = function() {
+        return median(this);
+    };
+    Array.prototype.mode = function() {
+        return mode(this);
+    };
+    Array.prototype.sum = function() {
+        return sum(this);
+    }        
+    
     window.factorial = function(n) {
         function recur(n, acc) {
             if (n == 0) {
@@ -71,28 +96,36 @@
     'use strict';
     
     var model = {
-        'transcriptText': '',
-        'playgroundText': ''
+        'consoleResponseText': '',
+        'scriptEditorText': ''
     };
     
     var app = angular.module('app', []);
     app.run(function($rootScope) {
-        $rootScope.activeView = 'transcript.html'
+        $rootScope.activeView = 'console-responses.html'
         $rootScope.model = model;
     });    
     
-    app.controller('playgroundCtrl', ['$scope', function($scope) {
+    window.display = function(text) {
+        model.consoleResponseText = text + "\n" + model.consoleResponseText;
+    };
+    
+    app.controller('scriptEditorCtrl', ['$scope', function($scope) {
         $scope.model = model;
         // | The `run` service evaluates the playground text and prepends it to the transcript text.
-        $scope.run = function() {
-            model.transcriptText = eval(model.playgroundText) + "\n" + model.transcriptText
+        $scope.run = function() {   
+            var evalResult = eval(model.scriptEditorText);
+            var prevText = model.consoleResponseText; 
+            var newResponseText = evalResult + "\n" + prevText;
+            
+            model.consoleResponseText = newResponseText;
         };
         // | The `clear` service erases the transcript text.
-        $scope.clear = function() {
-            model.transcriptText = '';
+        $scope.clearConsoleResponseText = function() {
+            model.consoleResponseText = '';
         };
-        $scope.clearPlayground = function() {
-            model.playgroundText = '';        
+        $scope.clearScriptEditorText = function() {
+            model.scriptEditorText = '';        
         };
     }]);
 })();

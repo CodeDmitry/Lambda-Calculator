@@ -81,7 +81,7 @@ Basic use cases(more advanced ones are listed in sections below):
     6. permutation(3, 2)
     7. random()
     8. range(100).map(
-    9. range(100) // generates a sequence of numbers 0..100
+    9. range(100) // Generates a sequence of numbers 0..100
     10. range(100).map(x => x + 1) generates a sequence of numbers 1..101
     11. range(100).map(random) generates 100 random numbers between 0 and 1
     12. range(100).map(x => trunc(random() * 100)) generates 100 random numbers 0 through 99
@@ -93,7 +93,7 @@ display("mean: " + x.mean());
 display("mean: " + x.median());
 display("mean: " + x.mode());
     14. 
-window.comb = combination;  // alias combination to "comb" as it is shorter, you can also name "c"
+window.comb = combination;  // Alias combination to "comb" as it is shorter, you can also name "c".
 comb(3, 2);                 // 3C2 = 3    
 
 In addition, lambda calculator offers a few lambda calculus services, which

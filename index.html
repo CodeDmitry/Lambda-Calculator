@@ -70,7 +70,7 @@ If there are multiple statements in the script, only the result of the last
 Here is a brief list of global services, some of which can be accessed through array's dot directly:
     max, min, floor, ceil, trunc, combination, permutation,
     mean, median, mode, e, pi, ln(base e), log(base 10), 
-    product, sum, sqrt, display.
+    product, sum, sqrt, display, randInt0, randInt1.
 
 Basic use cases(more advanced ones are listed in sections below):
     1. 2 + 2
@@ -79,21 +79,22 @@ Basic use cases(more advanced ones are listed in sections below):
     4. e**(pi*sqrt(e))
     5. combination(3, 2)
     6. permutation(3, 2)
-    7. random()
-    8. range(100).map(
-    9. range(100) // generates a sequence of numbers 0..100
-    10. range(100).map(x => x + 1) generates a sequence of numbers 1..101
-    11. range(100).map(random) generates 100 random numbers between 0 and 1
-    12. range(100).map(x => trunc(random() * 100)) generates 100 random numbers 0 through 99
-    13. 
+    7. randInt0(100) // random integer between 0 and 100
+    8. randInt1(100) // random integer between 1 and 100
+    9. random() // random floating point number between 0 and 1
+    10. range(100) // Generates a sequence of numbers 0..100
+    11. range(100).map(() => randInt0(100)) generates a sequence of numbers 1..100
+    12. range(100).map(random) generates 100 random numbers between 0 and 1
+    13. range(100).map(x => trunc(random() * 100)) generates 100 random numbers 0 through 99
+    14. 
 let x = range(100).map(x => trunc(random() * 100));
 display("sequence: " + x);
 display("sum: " + x.sum());
 display("mean: " + x.mean());
 display("mean: " + x.median());
 display("mean: " + x.mode());
-    14. 
-window.comb = combination;  // alias combination to comb as it is shorter, can also use just c
+    15. 
+window.comb = combination;  // Alias combination to "comb" as it is shorter, you can also name "c".
 comb(3, 2);                 // 3C2 = 3    
 
 In addition, lambda calculator offers a few lambda calculus services, which

@@ -80,6 +80,32 @@ Basic use cases(more advanced ones are listed in sections below):
     5. combination(3, 2)
     6. permutation(3, 2)
     7. random()
+    8. range(100).map(
+    9. range(100) // generates a sequence of numbers 0..100
+    10. range(100).map(x => x + 1) generates a sequence of numbers 1..101
+    11. range(100).map(random) generates 100 random numbers between 0 and 1
+    12. range(100).map(x => trunc(random() * 100)) generates 100 random numbers 0 through 99
+    13. 
+let x = range(100).map(x => trunc(random() * 100));
+display("sequence: " + x);
+display("sum: " + x.sum());
+display("mean: " + x.mean());
+display("mean: " + x.median());
+display("mean: " + x.mode());
+    14. 
+window.comb = combination;  // alias combination to comb as it is shorter, can also use just c
+comb(3, 2);                 // 3C2 = 3    
+
+In addition, lambda calculator offers a few lambda calculus services, which
+is what the calculator is named after - a calculator that supports lambda
+calculus
+
+here is an example:
+
+let f = x => 2;         // f(x) = 2
+let g = x => 3 * x;     // g(x) = 3*x 
+let h = compose(g, f);  // h = g . f = 3*f(x) = 3*2 = 6
+display(h(2));          // 6
 ---
 The Lambda Calculator in essence is just a glorified developer console.
 
@@ -100,34 +126,6 @@ The lambda calculator exposes javascript Math functions to be used without
 their Math. prefix, that is, you can use log instead of Math.log and 
 random instead of Math.random, pi instead of Math.PI, and e instead of
 Math.E.
-
-Here are some practical examples of what the lambda calculator can do:
-
-1. range(100) generates a sequence of numbers 0..100
-2. range(100).map(x => x + 1) generates a sequence of numbers 1..101
-3. range(100).map(random) generates 100 random numbers between 0 and 1
-4. range(100).map(x => Math.trunc(random() * 100)) generates 100 random numbers 0 through 99
-5. 
-let x = range(100).map(x => Math.trunc(random() * 100));
-display("sequence: " + x);
-display("sum: " + x.sum());
-display("mean: " + x.mean());
-display("mean: " + x.median());
-display("mean: " + x.mode());
-6. 
-window.comb = combination;  // alias combination to comb as it is shorter, can also use just c
-comb(3, 2);                 // 3C2 = 3
-
-In addition, lambda calculator offers a few lambda calculus services, which
-is what the calculator is named after - a calculator that supports lambda
-calculus
-
-here is an example:
-
-let f = x => 2;         // f(x) = 2
-let g = x => 3 * x;     // g(x) = 3*x 
-let h = compose(g, f);  // h = g . f = 3*f(x) = 3*2 = 6
-display(h(2));          // 6
 
 The Lambda Calculator is a standalone offline web-application, meaning
 you can download the applicaiton locally and it will work even without

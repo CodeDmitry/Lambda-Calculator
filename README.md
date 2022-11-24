@@ -1,4 +1,6 @@
 # Lambda-Calculator
+[CLICK HERE TO VISIT THE CALCULATOR](https://codedmitry.github.io/Lambda-Calculator/)
+
 The lambda calculator is basically a web browser developer console, with additional features. It is meant to primarily empower mobile users to do quick math or advanced lambda calculus without having to deal with annoying button calculators or getting up to their computer.
 
 **A note on underscorejs**:

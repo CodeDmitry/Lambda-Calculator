@@ -58,21 +58,21 @@
         <div data-ng-controller="scriptEditorCtrl" style="width: 100%; height: 100%; overflow-x: hidden;">
 <pre>
 ---
-Basic usage:
+BASIC USAGE:
 
-Script Editor tab can be used to enter computations or scripts and run them.
-When a computation is ran, its result is displayed in the Console Responses tab.
+The Script Editor tab can be used to enter code you wish to run.
+When you run your code, the result of the code is displayed in the "Console Responses" tab.
 If there are multiple statements in the script, only the result of the last
-    statement is going to be logged in the console responses tab. You can use
-    display function to display multiple statements in one script rather than
-    only the last one.    
+statement in the script is going to be logged to the "Console Responses" tab. 
+You can use the display() function instead of console.log to display the line
+directly to the "Console Responses tab".
 
-Here is a brief list of global services, some of which can be accessed through array's dot directly:
+Below is a brief list of global functions, some of which can be accessed through array's dot directly:
     max, min, floor, ceil, trunc, combination, permutation,
     mean, median, mode, e, pi, ln(base e), log(base 10), 
     product, sum, sqrt, display, randInt0, randInt1.
 
-Basic use cases(more advanced ones are listed in sections below):
+SAMPLE USE CASES(more advanced ones are listed in sections below):
     1. 2 + 2
     2. ln(2) + pi
     3. pi**2
@@ -97,43 +97,22 @@ display("mean: " + x.mode());
 window.comb = combination;  // Alias combination to "comb" as it is shorter, you can also name "c".
 comb(3, 2);                 // 3C2 = 3    
 
-In addition, lambda calculator offers a few lambda calculus services, which
-is what the calculator is named after - a calculator that supports lambda
-calculus
+In addition to the services above, Lambda Calculator offers a few lambda calculus functions,
+that is, anonymous functions.
 
 here is an example:
 
 let f = x => 2;         // f(x) = 2
 let g = x => 3 * x;     // g(x) = 3*x 
-let h = compose(g, f);  // h = g . f = 3*f(x) = 3*2 = 6
+let h = compose(g, f);  // h = g . f = (x => g(f(x)))
 display(h(2));          // 6
 ---
-The Lambda Calculator in essence is just a glorified developer console.
+The Lambda Calculator allows you to experiment with JavaScript on the go or
+help doing advanced statistics expressions. 
 
-While seemingly simple, it is profoundly useful on mobile devices
-which do not allow you access to the developer console and 
-recently disabled the use of javascript: in URL bar, which is 
-a great shame since it was useful for doing fun things like
-running `javascript:(()=>{document.body.style.filter = 'invert(100%)'})();`
-to invert colors on a webpage or flipping videos on the webpage, or
-change video playback speed on a webpage.
-
-The Lambda Calculator was created when I was taking statistics at 
-university, and found that I needed a tool to generate a large
-set of random numbers, and potentially sort them, find their averages
-and so on.
-
-The lambda calculator exposes javascript Math functions to be used without
-their Math. prefix, that is, you can use log instead of Math.log and 
-random instead of Math.random, pi instead of Math.PI, and e instead of
-Math.E.
-
-The Lambda Calculator is a standalone offline web-application, meaning
-you can download the applicaiton locally and it will work even without
-internet. You can download the project by visiting 
-https://github.com/CodeDmitry/Lambda-Calculator/releases/tag/1.0.0
-unless it has been renamed or removed.
-
+The Lambda Calculator is an internet isolated web application, it does not use any
+external resources, nor collect any data. It is implemented using a browser control
+and locally stored HTML/CSS/JavaScript resources.
 </pre>          
         </div>
       </script>

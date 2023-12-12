@@ -84,7 +84,11 @@
     };
     Array.prototype.max = function() {
         return this.sort().reverse()[0];
-    }        
+    };     
+
+    Object.prototype.display = function() {
+        display(this);
+    };
     
     window.factorial = function(n) {
         function recur(n, acc) {
